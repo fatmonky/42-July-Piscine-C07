@@ -16,53 +16,53 @@
 int	ft_ultimate_range(int **range, int min, int max)
 {
 	int	arrsize;
-	int	*ptr;
+	int	*array;
 	int	index;
-//function should allocate and assign all values between min (inclusive) and max (excluded)
-//into an array of ints.
+	//function should allocate and assign all values between min (inclusive) and max (excluded)
+	//into an array of ints.
 
 	arrsize = max - min;
-	ptr = (int *)malloc(arrsize * sizeof(int));
-
+	array = (int *)malloc(arrsize * sizeof(int));
+	index = 0;
+	//if min >= max, range points on NULL and return 0.
 	if (min >= max)
-		{
-			*range = NULL; //why is this *range instead of range = &NULL? Because "range will point on NULL" => implies that 
-			return (0);
-		}
+	{
+		*range = NULL;
+		return (0);
+	}
+	//function should return range (or -1 on error)
 	while (index < arrsize)
 	{
-		if (ptr == NULL
+		if (array == NULL)
 			return (-1);
-		ptr[index] = min + index;
+		array[index] = min + index;
 		index++;
 	}
-//function should return range (or -1 on error)
-//
-//if min >= max, range points on NULL and return 0.
-//
+	return(arrsize);//15 Aug evening: this is a bit confusing. ft_range returns a ptr to an array, but this returns a int of array size. I'm a bit tired, so not making sense in my mind.
 }
+//15 Aug still: trying to figure out how to test this, before I proceed with this code...
 
-/*
 //to comment out before submission, with main.
 void	print_array(int* arr, int max, int min)
 {
-	int* ptr = arr;
+	int* array = arr;
 	int i = 0;
 
 	while (i < (max - min))
 	{
-		printf("%d, ", ptr[i]);
+		printf("%d, ", array[i]);
 		i++;
 	}
 }
 
 int	main(void)
 {
-	int	min = 22;
-	int	max = INT_MAX; //testing INT_MAX
-	int* array1 = ft_range(min,max);
-//	int array1size = sizeof(array1) / sizeof(int);
-	printf("array1 =  ft_range(-1000, 20000000) : ");
-	print_array(array1, max, min);
-	free(array1);
+	int	min = -22;
+	int	max = 120; 
+	int **range = NULL;
+
+	int array1 = ft_ultimate_range(range,min,max);
+	printf("array1 =  ft_ultimate_range(-22, 120) : ");
+	print_array(*range, max, min);
+	free(*range);
 }
