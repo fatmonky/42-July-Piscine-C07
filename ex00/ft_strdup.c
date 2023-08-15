@@ -6,7 +6,7 @@
 /*   By: pteh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:50:27 by pteh              #+#    #+#             */
-/*   Updated: 2023/08/14 16:44:41 by pteh             ###   ########.fr       */
+/*   Updated: 2023/08/15 16:19:22 by pteh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ char	*ft_strdup(char *src)
 	char	*new_str_hd;
 
 	src_len = ft_strlen(src);
-	new_str = malloc((src_len + 1) * sizeof(char));
+	new_str = (char *)malloc((src_len + 1) * sizeof(char));
 	if (new_str == NULL)
-		return (0);
+		return (NULL);
 	new_str_hd = new_str;
 	while (*src != '\0')
 	{
