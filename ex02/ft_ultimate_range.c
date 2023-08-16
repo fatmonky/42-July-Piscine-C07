@@ -6,7 +6,7 @@
 /*   By: pteh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/15 17:34:01 by pteh              #+#    #+#             */
-/*   Updated: 2023/08/15 17:57:08 by pteh             ###   ########.fr       */
+/*   Updated: 2023/08/16 11:05:40 by pteh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,23 @@ int	ft_ultimate_range(int **range, int min, int max)
 		array[index] = min + index;
 		index++;
 	}
-	return(arrsize);//15 Aug evening: this is a bit confusing. ft_range returns a ptr to an array, but this returns a int of array size. I'm a bit tired, so not making sense in my mind.
+	*range = array;
+	return(arrsize);
 }
 //15 Aug still: trying to figure out how to test this, before I proceed with this code...
+// 16 Aug: testing this out using Jin Liang's test function.
 
 //to comment out before submission, with main.
-void	print_array(int* arr, int max, int min)
-{
-	int* array = arr;
-	int i = 0;
-
-	while (i < (max - min))
-	{
-		printf("%d, ", array[i]);
-		i++;
-	}
-}
 
 int	main(void)
 {
 	int	min = -22;
 	int	max = 120; 
-	int **range = NULL;
+	int	size; 
+	int *range = NULL;
 
-	int array1 = ft_ultimate_range(range,min,max);
-	printf("array1 =  ft_ultimate_range(-22, 120) : ");
-	print_array(*range, max, min);
-	free(*range);
+	size = ft_ultimate_range(&range,min,max);
+	for (int i = 0; i < size; i++)
+		printf("array1[%d] for -22, 120 : [%d]\n", i, range[i]);
+	free(range);
 }
