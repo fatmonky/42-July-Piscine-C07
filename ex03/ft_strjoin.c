@@ -6,14 +6,13 @@
 /*   By: pteh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 11:09:38 by pteh              #+#    #+#             */
-/*   Updated: 2023/08/16 14:09:21 by pteh             ###   ########.fr       */
+/*   Updated: 2023/08/16 15:41:18 by pteh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 
-//write out strlen, to calculate string length.
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -36,6 +35,7 @@ int	total_str_len(int size, char **strs)
 	while (i < size)
 	{
 		temp += ft_strlen(strs[i]);
+		i++;
 	}
 	return (temp);
 }
@@ -54,57 +54,50 @@ char	*ft_strcat(char *dest, char *src)
 		dest++;
 	}
 	*dest = '\0';
-	return (original_dest); //this might not be what I want here. 
+	return (original_dest);
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	char	*array;
-//concatenate all strings pointed by strs, separated by sep.
-//size is no of strings in strs.
-//if size is 0, return empty string that you can free() (in main).
+	int		i;
+	int		length;
+
+	length = total_str_len(size, strs) + (ft_strlen(sep) * (size - 1)) + 1;
 	if (size == 0)
-		return (NULL);
-//figure out how much memory to malloc. this should be:
-//	- (length of each string * size) + (length of each sep * (size - 1) + 1 (for null terminator)
-	array = (char *)malloc((total_str_len(size, strs) + (ft_strlen(sep) * (size - 1)) + 1) * sizeof(char));
-
-
-int	i;
-char	**temp;
-
-i = 0;
-while (i < size) 
-{
-	//while (j < ft_strlen(strs[i])
-	//{
-	strs[i] = ft_strcat(strs[i], sep);
-	i++;
-}
-i = 0;
-while (i < size)
-{
-	temp[i] = ft_strcat(strs[i], strs[i+ 1]);
-}
-array = *temp;
-//for each str in strs
-//and for each sep before null
-//add sep to each str in strs.
-//add each str to each str.
-//add null at the end.
-
-// I tried to do multiple things: looking at Jin Liang's and Nick's code, they had actually created another function to calculate the total str len, before malloc. 
-// some used strcpy, others strcat. 
+	{
+		array = (char *)malloc(1);
+		array[0] = '\0';
+		return (array);
+	}
+	array = (char *)malloc(length * sizeof(char));
+	if (array == NULL)
+		return (0);
+	array[0] = '\0';
+	i = 0;
+	while (i < size)
+	{
+		ft_strcat(array, strs[i]);
+		if (i + 1 < size)
+			ft_strcat(array, sep);
+		i++;
+	}
 	return (array);
 }
+/*
+   int	main()
+   {
 
-int	main(int argc, char** argv)
-{
-	char *mainstring;
-	char *sep = "@!$#";
-	mainstring = ft_strjoin(argc, argv,sep);
-	if (argc > 1)
-		printf("%s\n",mainstring);
-	free(mainstring);
-	return (0);
-}
+   char	*strs[] = {"this", "shit", "complicated", "!"};
+   char	*sep = "<<sep>>";
+   char	*result = ft_strjoin(4, strs, sep);
+
+   if (result != NULL)
+   {
+   printf("Concatenated string: %s\n", result);
+   free(result);
+   }
+   else
+   printf("Memory allocation failed.\n");
+   return (0);
+   }*/
