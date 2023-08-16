@@ -6,7 +6,7 @@
 /*   By: pteh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 16:55:43 by pteh              #+#    #+#             */
-/*   Updated: 2023/08/15 17:32:11 by pteh             ###   ########.fr       */
+/*   Updated: 2023/08/16 10:42:21 by pteh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_array(int* arr, int max, int min)
 int	main(void)
 {
 	int	min = 22;
-	int	max = INT_MAX; //testing INT_MAX
+	int	max = 120; 
 	int* array1 = ft_range(min,max);
 //	int array1size = sizeof(array1) / sizeof(int);
 	printf("array1 =  ft_range(-1000, 20000000) : ");
