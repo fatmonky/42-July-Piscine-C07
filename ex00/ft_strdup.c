@@ -6,7 +6,7 @@
 /*   By: pteh <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/13 14:50:27 by pteh              #+#    #+#             */
-/*   Updated: 2023/08/16 17:29:33 by pteh             ###   ########.fr       */
+/*   Updated: 2023/08/16 18:22:15 by pteh             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*ft_strdup(char *src)
 	*new_str = '\0';
 	return (new_str_hd);
 }
-/*
+
 int	main(void)
 {
 	char *string1 = "Hello";
@@ -63,4 +63,4 @@ int	main(void)
 	printf("(ft_strdup)duplicated string: %s\n", string3);
 	free(string2);
 	free(string3);
-}*/
+}
